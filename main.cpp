@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+using std::abs;
 using std::cout;
 using std::ifstream;
 using std::istringstream;
@@ -19,6 +20,7 @@ vector<State> ParseLine(string line) {
   int n;
   char c;
   vector<State> row;
+
   while (sline >> n >> c && c == ',') {
     if (n == 0) {
       row.push_back(State::kEmpty);
@@ -44,6 +46,12 @@ vector<vector<State>> ReadBoardFile(string path) {
   return board;
 }
 
+// Search function stub.
+vector<vector<State>> Search(vector<vector<State>> board, int start[2], int goal[2]) {
+  cout << "No path found!\n";
+  return vector<vector<State>>{};
+}
+
 string CellString(State cell) {
   switch (cell) {
   case State::kObstacle:
@@ -63,6 +71,10 @@ void PrintBoard(const vector<vector<State>> board) {
 }
 
 int main() {
+  int start[2]{0, 0};
+  int goal[2]{4, 5};
+
   auto board = ReadBoardFile("1.board");
-  PrintBoard(board);
+  auto solution = Search(board, start, goal);
+  PrintBoard(solution);
 }
