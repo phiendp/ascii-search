@@ -46,6 +46,12 @@ vector<vector<State>> ReadBoardFile(string path) {
   return board;
 }
 
+// Heuristic function to guide the A* search
+// Calculate the Manhattan Distance from one coordinate to the other
+int Heuristic(int x1, int y1, int x2, int y2) {
+  return abs(x2 - x1) + abs(y2 - y1);
+}
+
 // Search function stub.
 vector<vector<State>> Search(vector<vector<State>> board, int start[2], int goal[2]) {
   cout << "No path found!\n";
