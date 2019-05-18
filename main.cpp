@@ -54,13 +54,25 @@ int Heuristic(int x1, int y1, int x2, int y2) {
 }
 
 // Add node to open vector
-void AddToOpen(int x, int y, int g, int h, vector<vector<int>> &open_nodes, vector<vector<State>> &grid) {
+void AddToOpen(int x, int y, int g, int h, vector<vector<int>> &open_nodes, vector<vector<State>> &board) {
   open_nodes.push_back(vector<int>{x, y, g, h});
-  grid[x][y] = State::kClosed;
+  board[x][y] = State::kClosed;
 }
 
 // Search function stub.
 vector<vector<State>> Search(vector<vector<State>> board, int start[2], int goal[2]) {
+  // Init the open nodes vector
+  vector<vector<int>> open {};
+
+  // Init the starting node
+  int x = start[0];
+  int y = start[1];
+  int g = 0;
+  int h = Heuristic(x, y, goal[0], goal[1]);
+
+  // Add the starting node to the open vector
+  AddToOpen(x, y, g, h, open, board);
+
   cout << "No path found!\n";
   return vector<vector<State>>{};
 }
