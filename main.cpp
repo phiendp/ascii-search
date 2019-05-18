@@ -47,6 +47,15 @@ vector<vector<State>> ReadBoardFile(string path) {
   return board;
 }
 
+// Write function to compare the f-value of two nodes here
+// Note: f_value = g + h (sum of cost and heuristic)
+bool Compare(vector<int> a, vector<int> b) {
+  int f1 = a[2] + a[3];
+  int f2 = b[2] + b[3];
+
+  return f1 > f2;
+}
+
 // Heuristic function to guide the A* search
 // Calculate the Manhattan Distance from one coordinate to the other
 int Heuristic(int x1, int y1, int x2, int y2) {
