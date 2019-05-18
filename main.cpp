@@ -12,7 +12,8 @@ using std::vector;
 
 enum class State {
   kEmpty,
-  kObstacle
+  kObstacle,
+  kClosed
 };
 
 vector<State> ParseLine(string line) {
@@ -50,6 +51,12 @@ vector<vector<State>> ReadBoardFile(string path) {
 // Calculate the Manhattan Distance from one coordinate to the other
 int Heuristic(int x1, int y1, int x2, int y2) {
   return abs(x2 - x1) + abs(y2 - y1);
+}
+
+// Add node to open vector
+void AddToOpen(int x, int y, int g, int h, vector<vector<int>> &open_nodes, vector<vector<State>> &grid) {
+  open_nodes.push_back(vector<int>{x, y, g, h});
+  grid[x][y] = State::kClosed;
 }
 
 // Search function stub.
